@@ -86,6 +86,18 @@ char *strcpy(char *dst, const char *src) {
     return dst;
 }
 
+/* https://en.cppreference.com/w/c/string/byte/strcpy */
+char *strcpy_s(char *dst, size_t destsz, const char *src) {
+    size_t idx = 0;
+    char *d = dst;
+    while (idx < (destsz - 1) && *src) { // truncate before the end of the dest string
+        *d++ = *src++;
+        idx++;
+    }
+    *d = '\0';
+    return dst;
+}
+
 int strcmp(const char *s1, const char *s2) {
     while (*s1 && *s2) {
         if (*s1 != *s2)
